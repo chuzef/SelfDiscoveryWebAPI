@@ -11,7 +11,6 @@ namespace SelfDiscoveryWebAPI
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-
             // http://localhost:65201/api/careconnect/discover
             // http://localhost:65201/api
             config.Routes.MapHttpRoute(
