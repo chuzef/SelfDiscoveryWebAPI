@@ -28,7 +28,7 @@ namespace SelfDiscoveryWebAPI.Controllers
         [HttpGet]
         public HttpResponseMessage Rpc(string invokeClass, string invokeMethod)
         {
-            var methodResult = Utils.Invoke(invokeClass, invokeMethod, Request.RequestUri.ParseQueryString());
+            var methodResult = Utils.Invoke(User, invokeClass, invokeMethod, Request.RequestUri.ParseQueryString());
             return Request.CreateResponse(HttpStatusCode.OK, methodResult);
         }
 

@@ -124,10 +124,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CareConnectController.cs" />
+    <Compile Include="Infrastructure\AuthenticationTokenDelegatingHandler.cs" />
     <Compile Include="Models\ExposedMethodInfo.cs" />
     <Compile Include="Models\Extensions.cs" />
     <Compile Include="Models\Utils.cs" />
-    <Compile Include="Models\RouteInfo.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />

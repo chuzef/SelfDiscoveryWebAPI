@@ -19,6 +19,28 @@
             </summary>
             <returns>List of classes / methods with their parameters.</returns>
         </member>
+        <member name="T:SelfDiscoveryWebAPI.Models.Utils">
+            <summary>
+            Collection of methods related to ExposedAttribute: invokation and discovery.
+            </summary>
+        </member>
+        <member name="M:SelfDiscoveryWebAPI.Models.Utils.Invoke(System.Security.Principal.IPrincipal,System.String,System.String,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Invokes an ExposedAttribute method in an ExposedAttribute class.
+            </summary>
+            <param name="user">IPrincipal for testing method authorization</param>
+            <param name="typeExposedName">Name of the ExposedAttribute in type</param>
+            <param name="methodExposedName">Name of the ExposedAttribute in method</param>
+            <param name="methodParameters">Dictionary of method parameters. Will be casted to proper types.</param>
+            <returns>Invoked method response</returns>
+        </member>
+        <member name="M:SelfDiscoveryWebAPI.Models.Utils.DiscoverExposedMethods">
+            <summary>
+            From loaded assemblies fetches types and methods with ExposedAttribute and outputs
+            invoking information.
+            </summary>
+            <returns>Array of ExposedMethodInfo</returns>
+        </member>
         <member name="M:SelfDiscoveryWebAPI.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
             Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
