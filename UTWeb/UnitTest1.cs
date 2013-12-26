@@ -8,6 +8,7 @@ using System.Text;
 using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
+using SelfDiscoveryWebAPI.Controllers;
 
 namespace UTWeb
 {
@@ -19,36 +20,42 @@ namespace UTWeb
         {
             BusinessModel1 bm1 = new BusinessModel1("property AAA");
 
-            var controller = new BusinessController1 {Request = new HttpRequestMessage()
+            var controller = new CareConnectController
             {
-                Method = HttpMethod.Get,
-                Content = new ObjectContent(bm1.GetType(), bm1, new JsonMediaTypeFormatter())
-            }};
+                Request = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Get,
+                        Content = new ObjectContent(bm1.GetType(), bm1, new JsonMediaTypeFormatter())
+                    }
+            };
             controller.Request.SetConfiguration(new HttpConfiguration());
 
-            var response = controller.Index();
+            var response = controller.Rpc("patents", "encounters");
             var entity = GetContent<BusinessModel3>(response.Content);
             Assert.AreNotEqual(entity, null);
-        }        
-        
+        }
+
         [TestMethod]
         public void TestMethod2()
         {
             BusinessModel1 bm1 = new BusinessModel1("property AAA");
 
-            var controller = new BusinessController1 {Request = new HttpRequestMessage()
+            var controller = new CareConnectController
+            {
+                Request = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
                 Content = new ObjectContent(bm1.GetType(), bm1, new JsonMediaTypeFormatter())
-            }};
+            }
+            };
             controller.Request.SetConfiguration(new HttpConfiguration());
 
-            var response = controller.Index();
+            var response = controller.Rpc("patents", "encounters");
             var entity = GetContent<BusinessModel3>(response.Content);
             Assert.AreNotEqual(entity, null);
         }
 
-        private static T GetContent<T>(HttpContent content) where T: class
+        private static T GetContent<T>(HttpContent content) where T : class
         {
             string jsonString = content.ReadAsStringAsync().Result;
             var serializer = new DataContractJsonSerializer(typeof(T));

@@ -72,9 +72,9 @@
       <Project>{BBBD9973-3860-442F-97BB-764EF2DE10F2}</Project>
       <Name>Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SelfDiscoveryMvc\SelfDiscoveryMvc.csproj">
+    <ProjectReference Include="..\SelfDiscoveryWebAPI\SelfDiscoveryWebAPI.csproj">
       <Project>{15235a77-d780-4f08-8d63-b62bc18d05ba}</Project>
-      <Name>SelfDiscoveryMvc</Name>
+      <Name>SelfDiscoveryWebAPI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
