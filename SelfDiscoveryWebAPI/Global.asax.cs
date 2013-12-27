@@ -17,6 +17,10 @@ namespace SelfDiscoveryWebAPI
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             GlobalConfiguration.Configuration.MessageHandlers.Add(new AuthenticationTokenDelegatingHandler());
+
+            // remove XML formater, as it cannot serialize dynamic classes. will respond json only
+            var configuration = GlobalConfiguration.Configuration;
+            configuration.Formatters.Remove(configuration.Formatters.XmlFormatter);
         }
     }
 }

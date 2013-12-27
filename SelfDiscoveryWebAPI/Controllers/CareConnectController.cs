@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Models;
 using SelfDiscoveryWebAPI.Models;
 
 namespace SelfDiscoveryWebAPI.Controllers
@@ -28,6 +29,7 @@ namespace SelfDiscoveryWebAPI.Controllers
         [HttpGet]
         public HttpResponseMessage Rpc(string invokeClass, string invokeMethod)
         {
+            var bb = new BusinessModel3(12);
             var methodResult = Utils.Invoke(User, invokeClass, invokeMethod, Request.RequestUri.ParseQueryString());
             return Request.CreateResponse(HttpStatusCode.OK, methodResult);
         }
