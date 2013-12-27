@@ -33,8 +33,8 @@ namespace SelfDiscoveryWebAPI.Models
             if (null == minfo)
                 throw new NotImplementedException(string.Format("Method '{0}' not found in type '{1}' or not marked as Exposed(Name='{0}').", methodExposedName, typeExposedName));
 
-            if (!IsAuthorized(user, minfo))
-                throw new AuthenticationException();
+//            if (!IsAuthorized(user, minfo))
+//                throw new AuthenticationException();
 
             var parValues = (from pinfo in minfo.GetParameters()
                              let attrName = pinfo.GetExposedParameterName()
