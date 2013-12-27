@@ -4,7 +4,21 @@
         <name>SelfDiscoveryWebAPI</name>
     </assembly>
     <members>
-        <member name="M:SelfDiscoveryWebAPI.Controllers.CareConnectController.Rpc(System.String,System.String)">
+        <member name="T:SelfDiscoveryWebAPI.Controllers.CareConnectController">
+            <summary>
+            RPC to business layer
+            </summary>
+        </member>
+        <member name="M:SelfDiscoveryWebAPI.Controllers.CareConnectController.RpcFromBody(System.String,System.String)">
+            <summary>
+            Invokes method 'invokeMethod' of 'invokeClass'. Provide single input parameter for the method in form body. 
+            Mehtods, their input parameters and output parameter are described at /careconnect/discover.
+            </summary>
+            <param name="invokeClass">Name property of ExposeAttribute of a class to be invoked</param>
+            <param name="invokeMethod">Name property of ExposeAttribute of a method to be invoked</param>
+            <returns>Depends on the invoked class. Use headers in your Http request to control response format e.g. json/xml.</returns>
+        </member>
+        <member name="M:SelfDiscoveryWebAPI.Controllers.CareConnectController.RpcFromQueryString(System.String,System.String)">
             <summary>
             Invokes method 'invokeMethod' of 'invokeClass'. Provide parameters for the method in query string. 
             Mehtods, their input parameters and output parameter are described at /careconnect/discover.
@@ -24,6 +38,16 @@
             Collection of methods related to ExposedAttribute: invokation and discovery.
             </summary>
         </member>
+        <member name="M:SelfDiscoveryWebAPI.Models.Utils.Invoke(System.Security.Principal.IPrincipal,System.String,System.String,System.Net.Http.HttpContent)">
+            <summary>
+            Invokes an ExposedAttribute method in an ExposedAttribute class.
+            </summary>
+            <param name="user">IPrincipal for testing method authorization</param>
+            <param name="typeExposedName">Name of the ExposedAttribute in type</param>
+            <param name="methodExposedName">Name of the ExposedAttribute in method</param>
+            <param name="content">Content to be deserialized and used as a single input parameter of the invoked method</param>
+            <returns>Invoked method response</returns>
+        </member>
         <member name="M:SelfDiscoveryWebAPI.Models.Utils.Invoke(System.Security.Principal.IPrincipal,System.String,System.String,System.Collections.Specialized.NameValueCollection)">
             <summary>
             Invokes an ExposedAttribute method in an ExposedAttribute class.
@@ -31,7 +55,7 @@
             <param name="user">IPrincipal for testing method authorization</param>
             <param name="typeExposedName">Name of the ExposedAttribute in type</param>
             <param name="methodExposedName">Name of the ExposedAttribute in method</param>
-            <param name="methodParameters">Dictionary of method parameters. Will be casted to proper types.</param>
+            <param name="methodParameters">Dictionary of method parameters. Will be casted to proper input types.</param>
             <returns>Invoked method response</returns>
         </member>
         <member name="M:SelfDiscoveryWebAPI.Models.Utils.DiscoverExposedMethods">
