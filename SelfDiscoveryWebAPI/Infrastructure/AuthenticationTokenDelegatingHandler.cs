@@ -21,6 +21,9 @@ namespace SelfDiscoveryWebAPI.Infrastructure
                 string token = request.Headers.GetValues(HTTP_HEADER_TOKEN).FirstOrDefault();
                 GoogleAuthenticate(token);
             }
+#if FAKE_TOKEN
+            SetPrincipal(new CustomPrincipal("fake_username"));
+#endif
             return base.SendAsync(request, cancellationToken);
         }
 
@@ -68,7 +71,15 @@ namespace SelfDiscoveryWebAPI.Infrastructure
     public class CustomPrincipal : IPrincipal
     {
         public IIdentity Identity { get; private set; }
-        public bool IsInRole(string role) { return false; }
+
+        public bool IsInRole(string role)
+        {
+#if FAKE_TOKEN
+            return true;
+#else
+            return false;
+#endif
+        }
 
         public CustomPrincipal(string email)
         {
