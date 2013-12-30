@@ -22,15 +22,15 @@ namespace UTWeb
 
             var controller = new CareConnectController
             {
-                Request = new HttpRequestMessage()
-                    {
-                        Method = HttpMethod.Get,
-                        Content = new ObjectContent(bm1.GetType(), bm1, new JsonMediaTypeFormatter())
-                    }
+                Request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Get,
+                    Content = new ObjectContent(bm1.GetType(), bm1, new JsonMediaTypeFormatter())
+                }
             };
             controller.Request.SetConfiguration(new HttpConfiguration());
 
-            var response = controller.Rpc("patents", "encounters");
+            var response = controller.RpcFromQueryString("patents", "encounters");
             var entity = GetContent<BusinessModel3>(response.Content);
             Assert.AreNotEqual(entity, null);
         }
@@ -42,15 +42,15 @@ namespace UTWeb
 
             var controller = new CareConnectController
             {
-                Request = new HttpRequestMessage()
-            {
-                Method = HttpMethod.Get,
-                Content = new ObjectContent(bm1.GetType(), bm1, new JsonMediaTypeFormatter())
-            }
+                Request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Get,
+                    Content = new ObjectContent(bm1.GetType(), bm1, new JsonMediaTypeFormatter())
+                }
             };
             controller.Request.SetConfiguration(new HttpConfiguration());
 
-            var response = controller.Rpc("patents", "encounters");
+            var response = controller.RpcFromQueryString("patents", "encounters");
             var entity = GetContent<BusinessModel3>(response.Content);
             Assert.AreNotEqual(entity, null);
         }
