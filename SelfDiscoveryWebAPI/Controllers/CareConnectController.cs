@@ -23,8 +23,6 @@ namespace SelfDiscoveryWebAPI.Controllers
         [ActionName("Rpc")]
         public HttpResponseMessage RpcFromBody(string invokeClass, string invokeMethod)
         {
-            var bm = new BusinessModel3(111);
-
             var methodResult = Utils.Invoke(User, invokeClass, invokeMethod, Request.Content);
             return Request.CreateResponse(HttpStatusCode.OK, methodResult);
         }
@@ -40,8 +38,6 @@ namespace SelfDiscoveryWebAPI.Controllers
         [ActionName("Rpc")]
         public HttpResponseMessage RpcFromQueryString(string invokeClass, string invokeMethod)
         {
-            var bm = new BusinessModel3(111);
-
             var methodResult = Utils.Invoke(User, invokeClass, invokeMethod, Request.RequestUri.ParseQueryString());
             return Request.CreateResponse(HttpStatusCode.OK, methodResult);
         }
