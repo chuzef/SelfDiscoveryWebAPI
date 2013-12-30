@@ -61,7 +61,8 @@ namespace SelfDiscoveryWebAPI.Models
 #endif
             var parValues = (from pinfo in minfo.GetParameters()
                              let attrName = pinfo.GetExposedParameterName()
-                             select string.IsNullOrEmpty(methodParameters[attrName]) ? null : Convert.ChangeType(methodParameters[attrName], pinfo.ParameterType));
+                             select string.IsNullOrEmpty(methodParameters[attrName]) ? null : 
+                             Convert.ChangeType(methodParameters[attrName], pinfo.ParameterType));
 
             var result = minfo.Invoke(null, BindingFlags.Static, null, parValues.ToArray(), CultureInfo.CurrentCulture);
 
